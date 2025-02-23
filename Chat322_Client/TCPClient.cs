@@ -27,6 +27,7 @@ namespace Chat322_Client
         public static string ip = "127.0.0.1";
         public static string _activeGroup = "234";
         public static int _idclient = 7;
+        public static string _PersonName = "Nico";
 
         public static TcpClient myclient = null;
         public static NetworkStream stream {  get; private set; }
@@ -94,7 +95,7 @@ namespace Chat322_Client
         public void mysendmes(string ms)
         {
             Task task = new Task(() => {
-                byte[] data = Encoding.UTF8.GetBytes($"{ms} /{_activeGroup}-{_idclient}");
+                byte[] data = Encoding.UTF8.GetBytes($"{ms} /{_activeGroup}-{_idclient}-{_PersonName}");
                 stream.Write(data, 0, data.Length);
             });
             task.Start();
