@@ -62,24 +62,6 @@ namespace Chat322_Client
                 SetConfig();
                 myclient = new TcpClient(ip, _outPort);//TcpClient client = new TcpClient(ip, _outPort);
                 stream = myclient.GetStream();
-
-               
-                // Запуск потоков для отправки и приёма сообщений
-                //Thread sendThread = new Thread(() => MySendMessage(stream));
-                //Thread receiveThread = new Thread(() => MyReceiveMessages(stream));
-
-                //sendThread = new Thread(() => MySendMessage(stream));
-                //receiveThread = new Thread(() => MyReceiveMessages(stream));
-
-                //sendThread.Start();
-                //receiveThread.Start();
-
-                //sendThread.Join();
-                //receiveThread.Join();
-
-                // Закрытие соединения
-                //stream.Close();
-                //myclient.Close();
             }
             catch (Exception ex)
             {
@@ -129,73 +111,78 @@ namespace Chat322_Client
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                
+            }
+            return response;
+        }
+
+        public string MyReceiveMessagesJson()
+        {
+
+            StreamReader reader = new StreamReader(stream, Encoding.UTF8);
+            string response = "Ничего не пришло";
+            bool check = true;
+            try
+            {
+                while (check)
+                {
+                    byte[] buffer = new byte[1024];
+                    int bytesRead = stream.Read(buffer, 0, buffer.Length);
+
+                    response = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                    //var ff = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                    //response = reader.ReadLine();
+                    //if (response == null)break;
+                    if (response != null) check = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
                 //Console.WriteLine($"Ошибка при получении данных: {ex.Message}");
             }
             return response;
         }
 
 
+
+
         //ИЗВЛЕЧЕНИЕ ID УЧАСТНИКА ИЗ ВХОДЯЩЕГО СООБЩЕНИЯ
         public static int getClIdFromMes(string str)
         {
-            string[] splitstr = str.Split('-');
-            int i = Int32.Parse(splitstr[1]);
+            //string[] splitstr = str.Split('-');
+            //int i = Int32.Parse(splitstr[1]);
+            int i = Int32.Parse(str);
             return i;
         }
-
+        //ИЗВЛЕЧЕНИЕ сообщения УЧАСТНИКА ИЗ ВХОДЯЩЕГО СООБЩЕНИЯ
+        public static string[] getCldataFromMes(string str)
+        {
+            string[] splitstr = str.Split('/', '-');
+            
+            return splitstr;
+        }
 
     }
 }
 
+// Запуск потоков для отправки и приёма сообщений
+//Thread sendThread = new Thread(() => MySendMessage(stream));
+//Thread receiveThread = new Thread(() => MyReceiveMessages(stream));
 
-////int _idgroup = 34345;
-////int _idclient = 32111;
-//try
-//{
-//    Form1.mess = "Подключено к серверу.";
-//    //using (TcpClient client = new TcpClient("127.0.0.1", 3000))
-//    Thread thread = new Thread(() =>
-//    {
-//        byte[] buffer = new byte[1024];
-//        int bytesRead = mystream.Read(buffer, 0, buffer.Length);
-//        Form1.SetMessage("Ответ сервера: " + Encoding.UTF8.GetString(buffer, 0, bytesRead));
-//    });
-//    thread.Start();
+//sendThread = new Thread(() => MySendMessage(stream));
+//receiveThread = new Thread(() => MyReceiveMessages(stream));
+
+//sendThread.Start();
+//receiveThread.Start();
+
+//sendThread.Join();
+//receiveThread.Join();
+
+// Закрытие соединения
+//stream.Close();
+//myclient.Close();
 
 
-//    //using (NetworkStream stream = myclient.GetStream())
-//    //{
-//    //    //Console.WriteLine("Подключено к серверу.");
-//    //    Form1.mess = "Подключено к серверу.";
-//    //    while (true)
-//    //    {
 
-//    //        //Console.Write("Введите сообщение: ");
-//    //        //string message = GetMess();
-//    //        //if (message.ToLower() == "exit") break;
 
-//    //        //byte[] data = Encoding.UTF8.GetBytes($"{message} {_idgroup}-{_idclient}");
-//    //        //stream.Write(data, 0, data.Length);
-
-//    //        byte[] buffer = new byte[1024];
-//    //        int bytesRead = stream.Read(buffer, 0, buffer.Length);
-//    //        Form1.SetMessage("Ответ сервера: " + Encoding.UTF8.GetString(buffer, 0, bytesRead));
-//    //        //Console.WriteLine("Ответ сервера: " + Encoding.UTF8.GetString(buffer, 0, bytesRead));
-//    //        var ff = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-//    //    }
-//    //}
-//}
-//catch (Exception ex)
-//{
-//    Console.WriteLine($"Ошибка: {ex.Message}");
-//}
-
-//public void mysendmes(string ms)
-//{
-//    sendThread = new Thread(() =>
-//    {
-//        StreamWriter writer = new StreamWriter(stream, Encoding.UTF8) { AutoFlush = true };
-//        writer.WriteLine(ms);
-//    });
-//    sendThread.Start();
-//}

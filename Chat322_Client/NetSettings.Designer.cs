@@ -39,6 +39,8 @@
             this.tbox_NameGroup = new System.Windows.Forms.TextBox();
             this.NameGroup = new System.Windows.Forms.Label();
             this.IDPerson = new System.Windows.Forms.Label();
+            this.niknameperson = new System.Windows.Forms.Label();
+            this.tbox_NikName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btn_apply
@@ -109,7 +111,7 @@
             // tbox_idPerson
             // 
             this.tbox_idPerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbox_idPerson.Location = new System.Drawing.Point(306, 119);
+            this.tbox_idPerson.Location = new System.Drawing.Point(306, 93);
             this.tbox_idPerson.Name = "tbox_idPerson";
             this.tbox_idPerson.Size = new System.Drawing.Size(191, 26);
             this.tbox_idPerson.TabIndex = 7;
@@ -117,7 +119,7 @@
             // tbox_NameGroup
             // 
             this.tbox_NameGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbox_NameGroup.Location = new System.Drawing.Point(306, 48);
+            this.tbox_NameGroup.Location = new System.Drawing.Point(306, 26);
             this.tbox_NameGroup.Name = "tbox_NameGroup";
             this.tbox_NameGroup.Size = new System.Drawing.Size(191, 26);
             this.tbox_NameGroup.TabIndex = 8;
@@ -126,7 +128,7 @@
             // 
             this.NameGroup.AutoSize = true;
             this.NameGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NameGroup.Location = new System.Drawing.Point(303, 77);
+            this.NameGroup.Location = new System.Drawing.Point(303, 55);
             this.NameGroup.Name = "NameGroup";
             this.NameGroup.Size = new System.Drawing.Size(125, 17);
             this.NameGroup.TabIndex = 9;
@@ -136,17 +138,37 @@
             // 
             this.IDPerson.AutoSize = true;
             this.IDPerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.IDPerson.Location = new System.Drawing.Point(303, 148);
+            this.IDPerson.Location = new System.Drawing.Point(303, 122);
             this.IDPerson.Name = "IDPerson";
             this.IDPerson.Size = new System.Drawing.Size(79, 17);
             this.IDPerson.TabIndex = 10;
             this.IDPerson.Text = "ID клиента";
+            // 
+            // niknameperson
+            // 
+            this.niknameperson.AutoSize = true;
+            this.niknameperson.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.niknameperson.Location = new System.Drawing.Point(303, 187);
+            this.niknameperson.Name = "niknameperson";
+            this.niknameperson.Size = new System.Drawing.Size(91, 17);
+            this.niknameperson.TabIndex = 12;
+            this.niknameperson.Text = "Ник клиента";
+            // 
+            // tbox_NikName
+            // 
+            this.tbox_NikName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbox_NikName.Location = new System.Drawing.Point(306, 158);
+            this.tbox_NikName.Name = "tbox_NikName";
+            this.tbox_NikName.Size = new System.Drawing.Size(191, 26);
+            this.tbox_NikName.TabIndex = 11;
             // 
             // NetSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(585, 276);
+            this.Controls.Add(this.niknameperson);
+            this.Controls.Add(this.tbox_NikName);
             this.Controls.Add(this.IDPerson);
             this.Controls.Add(this.NameGroup);
             this.Controls.Add(this.tbox_NameGroup);
@@ -179,5 +201,7 @@
         private System.Windows.Forms.TextBox tbox_NameGroup;
         private System.Windows.Forms.Label NameGroup;
         private System.Windows.Forms.Label IDPerson;
+        private System.Windows.Forms.Label niknameperson;
+        private System.Windows.Forms.TextBox tbox_NikName;
     }
 }

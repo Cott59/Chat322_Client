@@ -28,6 +28,7 @@ namespace Chat322_Client
             TCPClient._outPort = Int32.Parse(tbox_outport.Text);
             TCPClient._idclient = Int32.Parse(tbox_idPerson.Text);
             TCPClient._activeGroup = tbox_NameGroup.Text;
+            TCPClient._PersonName = tbox_NikName.Text;
             this.Close();
         }
 
@@ -38,7 +39,7 @@ namespace Chat322_Client
             tbox_outport.Text = TCPClient._outPort.ToString();
             tbox_NameGroup.Text = TCPClient._activeGroup;
             tbox_idPerson.Text = TCPClient._idclient.ToString();
+            tbox_NikName.Text = TCPClient._PersonName;
         }
-
     }
 }
