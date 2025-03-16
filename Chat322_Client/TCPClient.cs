@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -182,11 +183,51 @@ namespace Chat322_Client
         }
 
 
-        public static bool AuthorizationClient(string str)
+        public static string AuthorizationClient(string str)
         {
-            bool check = false;
+            //bool check = false;
+            //using (NetworkStream stream = myclient.GetStream())
+            //{
+            //    //Console.WriteLine("Подключено к серверу .");
+            //    while (check)
+            //    {
+            //        //Console.Write("Введите сообщение: ");
+            //        //string message = Console.ReadLine();
+            //        //if (message.ToLower() == "exit") break;
 
-            return check;
+            //        byte[] data = Encoding.UTF8.GetBytes($"{str}");
+            //        stream.Write(data, 0, data.Length);
+
+            //        byte[] buffer = new byte[1024];
+            //        int bytesRead = stream.Read(buffer, 0, buffer.Length);
+            //        string dr = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+            //        if (dr != null) check = true;
+            //        //Console.WriteLine("Ответ сервера: " + Encoding.UTF8.GetString(buffer, 0, bytesRead));
+            //    }
+            //}
+            //while (check==false)
+            //{
+                //Console.Write("Введите сообщение: ");
+                //string message = Console.ReadLine();
+                //if (message.ToLower() == "exit") break;
+
+                byte[] data = Encoding.UTF8.GetBytes($"{str}");
+                stream.Write(data, 0, data.Length);
+
+                byte[] buffer = new byte[1024];
+                int bytesRead = stream.Read(buffer, 0, buffer.Length);
+                string dr = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                //if (dr == "avt-Проверьте верность введённых данных или зарегистрируйтесь!")
+                //{
+                //    MessageBox.Show(dr, "Ошибка", MessageBoxButtons.OK);
+                //}
+                //else
+                //{
+                //    check=true;
+                //}
+                //Console.WriteLine("Ответ сервера: " + Encoding.UTF8.GetString(buffer, 0, bytesRead));
+            //}
+            return dr;
         }
 
 

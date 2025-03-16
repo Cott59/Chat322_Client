@@ -24,7 +24,7 @@ namespace Chat322_Client
         {
             InitializeComponent();
             start();
-            SetMessage();
+            //SetMessage();
             settingdgv();
             lb_activeGroup.Text = TCPClient._activeGroup;
             
@@ -40,8 +40,12 @@ namespace Chat322_Client
         {
             TCPClient client = new TCPClient();
             client.StartClient();
-            Authorization authorization = new Authorization();
-            authorization.ShowDialog();
+            this.Enabled = false;
+            Task task = new Task(() => {
+                Authorization authorization = new Authorization();
+                authorization.ShowDialog();
+            });
+            task.Start();
         }
 
         private string getParams(string _path)

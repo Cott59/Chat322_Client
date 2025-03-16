@@ -34,12 +34,16 @@ namespace Chat322_Client
         private void btn_Entrance_Click(object sender, EventArgs e)
         {
             string str = $"{index}-{tbox_Nickname.Text}-{tbox_Password.Text}";
-            TCPClient tCPClient = new TCPClient();
-            tCPClient.sendmesavtorization(str);
-            if (TCPClient._PersonName != "")
+            string df = TCPClient.AuthorizationClient(str);
+            if (df == "avt-Проверьте верность введённых данных или зарегистрируйтесь!")
             {
-                Close();
+                MessageBox.Show(df, "Ошибка", MessageBoxButtons.OK);
             }
+            else
+            {
+                this.Close();
+            }
+
 
         }
     }
