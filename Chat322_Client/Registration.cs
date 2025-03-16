@@ -16,5 +16,12 @@ namespace Chat322_Client
         {
             InitializeComponent();
         }
+
+        private void btn_Registration_Click(object sender, EventArgs e)
+        {
+
+
+            this.Close();
+        }
     }
 }

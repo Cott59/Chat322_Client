@@ -23,20 +23,27 @@ namespace Chat322_Client
         public Form1()
         {
             InitializeComponent();
-            settingdgv();
-
-            TCPClient client = new TCPClient();
-            client.StartClient();
-            lb_activeGroup.Text = TCPClient._activeGroup;
+            start();
             SetMessage();
+            settingdgv();
+            lb_activeGroup.Text = TCPClient._activeGroup;
             
-            //Authorization.newAuthorization();
+
             //tbIniFile.Text = getParams("Cfg.ini");
             //tbIniFile.Text += mess;
             //TCPClient.SetConfig();
 
 
         }
+
+        private void start()
+        {
+            TCPClient client = new TCPClient();
+            client.StartClient();
+            Authorization authorization = new Authorization();
+            authorization.ShowDialog();
+        }
+
         private string getParams(string _path)
         {
             string result = string.Empty;
@@ -48,6 +55,10 @@ namespace Chat322_Client
             return result;
         }
 
+
+        /// <summary>
+        /// ПРОСЛУШКА КАНАЛА С СООБЩЕНИЯМИ
+        /// </summary>
         public void SetMessage()
         {
             Task task = new Task(() =>
@@ -58,6 +69,20 @@ namespace Chat322_Client
                     TCPClient tcp = new TCPClient();
                     string str = tcp.MyReceiveMessages();
                     string[] strs= TCPClient.getCldataFromMes(str);
+                    if (strs[0]== "avt")
+                    {
+                        if (strs[1] == "Проверьте верность введённых данных или зарегистрируйтесь!")
+                        {
+                            MessageBox.Show(strs[1], "Ошибка", MessageBoxButtons.OK);
+                            //TCPClient.AuthorizationClient();
+                        }
+                        else { 
+                            TCPClient._idclient =Int32.Parse(strs[1]);
+                            TCPClient._PersonName = strs[2];
+                        }
+                    }
+
+
                     //string str = tcp.MyReceiveMessagesJson();
                     //tbox_groupMessages.Text += $"{str}\r\n";
                     //tbox_groupMessages.Text += $"{strs[3]}\r\n";

@@ -27,7 +27,7 @@ namespace Chat322_Client
         public static string ip = "127.0.0.1";
         public static string _activeGroup = "234";
         public static int _idclient = 7;
-        public static string _PersonName = "Nico";
+        public static string _PersonName = "";
 
         public static TcpClient myclient = null;
         public static NetworkStream stream {  get; private set; }
@@ -82,6 +82,22 @@ namespace Chat322_Client
             });
             task.Start();
         }
+        /// <summary>
+        /// ОТПРАВКА СООБЩЕНИЯ ДЛЯ АВТОРИЗАЦИИ
+        /// </summary>
+        /// <param name="ms"></param>
+        public void sendmesavtorization(string ms)
+        {
+            Task task = new Task(() => {
+                byte[] data = Encoding.UTF8.GetBytes($"{ms}");
+                stream.Write(data, 0, data.Length);
+            });
+            task.Start();
+        }
+
+
+
+
 
 
         /// <summary>
@@ -102,9 +118,7 @@ namespace Chat322_Client
                     int bytesRead = stream.Read(buffer, 0, buffer.Length);
 
                     response=Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                    //var ff = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                    //response = reader.ReadLine();
-                    //if (response == null)break;
+                    
                     if (response != null) check = false;
                 }
             }
@@ -155,13 +169,28 @@ namespace Chat322_Client
             int i = Int32.Parse(str);
             return i;
         }
-        //ИЗВЛЕЧЕНИЕ сообщения УЧАСТНИКА ИЗ ВХОДЯЩЕГО СООБЩЕНИЯ
+
+        /// <summary>
+        /// ИЗВЛЕЧЕНИЕ сообщения УЧАСТНИКА ИЗ ВХОДЯЩЕГО СООБЩЕНИЯ
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public static string[] getCldataFromMes(string str)
         {
-            string[] splitstr = str.Split('/', '-');
-            
+            string[] splitstr = str.Split(new char[] { '/', '-' }, StringSplitOptions.RemoveEmptyEntries);
             return splitstr;
         }
+
+
+        public static bool AuthorizationClient(string str)
+        {
+            bool check = false;
+
+            return check;
+        }
+
+
+
 
     }
 }

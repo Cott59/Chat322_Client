@@ -64,12 +64,12 @@
             // tbox_groupMessages
             // 
             this.tbox_groupMessages.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbox_groupMessages.Location = new System.Drawing.Point(439, 151);
+            this.tbox_groupMessages.Location = new System.Drawing.Point(439, 272);
             this.tbox_groupMessages.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.tbox_groupMessages.Multiline = true;
             this.tbox_groupMessages.Name = "tbox_groupMessages";
             this.tbox_groupMessages.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbox_groupMessages.Size = new System.Drawing.Size(286, 295);
+            this.tbox_groupMessages.Size = new System.Drawing.Size(286, 156);
             this.tbox_groupMessages.TabIndex = 1;
             // 
             // textBox3
@@ -79,7 +79,7 @@
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox3.Size = new System.Drawing.Size(202, 53);
+            this.textBox3.Size = new System.Drawing.Size(202, 169);
             this.textBox3.TabIndex = 2;
             // 
             // label1
@@ -96,7 +96,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(441, 475);
+            this.label2.Location = new System.Drawing.Point(441, 456);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 17);
             this.label2.TabIndex = 5;
@@ -113,7 +113,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(650, 494);
+            this.button4.Location = new System.Drawing.Point(650, 475);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 30);
             this.button4.TabIndex = 9;
@@ -154,14 +154,14 @@
             // 
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(439, 495);
+            this.comboBox1.Location = new System.Drawing.Point(439, 476);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(202, 28);
             this.comboBox1.TabIndex = 15;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(650, 530);
+            this.button5.Location = new System.Drawing.Point(650, 511);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 30);
             this.button5.TabIndex = 16;

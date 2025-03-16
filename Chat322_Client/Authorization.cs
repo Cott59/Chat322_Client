@@ -17,16 +17,30 @@ namespace Chat322_Client
             InitializeComponent();
         }
 
+        private string index = "avt";
+
         private void RegNewPerson_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Registration registration = new Registration();
             registration.ShowDialog();
         }
 
-        public static void newAuthorization()
+        //public static void newAuthorization()
+        //{
+        //    Authorization authorization = new Authorization();
+        //    authorization.ShowDialog();
+        //}
+
+        private void btn_Entrance_Click(object sender, EventArgs e)
         {
-            Authorization authorization = new Authorization();
-            authorization.ShowDialog();
+            string str = $"{index}-{tbox_Nickname.Text}-{tbox_Password.Text}";
+            TCPClient tCPClient = new TCPClient();
+            tCPClient.sendmesavtorization(str);
+            if (TCPClient._PersonName != "")
+            {
+                Close();
+            }
+
         }
     }
 }
