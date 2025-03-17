@@ -17,17 +17,14 @@ namespace Chat322_Client
 {
     partial class TCPClient
     {        
-        // ip сервера
-        public static IPAddress _ipAddress;
-        // _outPort - порт сервера
-        public static int _outPort = 3000;
-        // _inPort - порт клиента
-        public static int _inPort;
-        //public static Socket _socket;
         
+        public static IPAddress _ipAddress;// ip сервера
+        public static int _outPort = 3000;// _outPort - порт сервера
+        public static int _inPort;// _inPort - порт клиента
         public static string ip = "127.0.0.1";
+
         public static string _activeGroup = "234";
-        public static int _idclient = 7;
+        public static int _idclient = 0;
         public static string _PersonName = "";
 
         public static TcpClient myclient = null;
@@ -35,6 +32,10 @@ namespace Chat322_Client
         public Thread sendThread {  get; private set; }
         public Thread receiveThread {  get; private set; }
         public TCPClient() { }
+
+
+
+
 
         //УСТАНОВКА ip АДРЕСА И ПОРТОВ ИЗ ФАЙЛА ПРИ ЗАПУСКЕ
         public void SetConfig()
@@ -55,6 +56,7 @@ namespace Chat322_Client
             _inPort = int.Parse(srtfile[2]);
 
         }
+
 
         public void StartClient()
         {
@@ -83,23 +85,6 @@ namespace Chat322_Client
             });
             task.Start();
         }
-        /// <summary>
-        /// ОТПРАВКА СООБЩЕНИЯ ДЛЯ АВТОРИЗАЦИИ
-        /// </summary>
-        /// <param name="ms"></param>
-        public void sendmesavtorization(string ms)
-        {
-            Task task = new Task(() => {
-                byte[] data = Encoding.UTF8.GetBytes($"{ms}");
-                stream.Write(data, 0, data.Length);
-            });
-            task.Start();
-        }
-
-
-
-
-
 
         /// <summary>
         /// получение данных
@@ -107,7 +92,6 @@ namespace Chat322_Client
         /// <param name="stream"></param>
         public string MyReceiveMessages()
         {
-
             StreamReader reader = new StreamReader(stream, Encoding.UTF8);
             string response= "Ничего не пришло";
             bool check = true;
@@ -126,12 +110,15 @@ namespace Chat322_Client
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                
             }
             return response;
         }
 
-        public string MyReceiveMessagesJson()
+        /// <summary>
+        /// СОХРАНЕНИЕ СООБЩЕНИЯ В JSON ФАЙЛ
+        /// </summary>
+        /// <returns></returns>
+        public string MyReceiveMessagesJson() 
         {
 
             StreamReader reader = new StreamReader(stream, Encoding.UTF8);
@@ -143,7 +130,6 @@ namespace Chat322_Client
                 {
                     byte[] buffer = new byte[1024];
                     int bytesRead = stream.Read(buffer, 0, buffer.Length);
-
                     response = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                     //var ff = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                     //response = reader.ReadLine();
@@ -165,14 +151,12 @@ namespace Chat322_Client
         //ИЗВЛЕЧЕНИЕ ID УЧАСТНИКА ИЗ ВХОДЯЩЕГО СООБЩЕНИЯ
         public static int getClIdFromMes(string str)
         {
-            //string[] splitstr = str.Split('-');
-            //int i = Int32.Parse(splitstr[1]);
             int i = Int32.Parse(str);
             return i;
         }
 
         /// <summary>
-        /// ИЗВЛЕЧЕНИЕ сообщения УЧАСТНИКА ИЗ ВХОДЯЩЕГО СООБЩЕНИЯ
+        /// ДЕЛЕНИЕ ВХОДЯЩЕЙ СТРОКИ НА МАССИВ СТРОК
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -185,7 +169,7 @@ namespace Chat322_Client
 
         public static string AuthorizationClient(string str)
         {
-            //bool check = false;
+           /*//bool check = false;
             //using (NetworkStream stream = myclient.GetStream())
             //{
             //    //Console.WriteLine("Подключено к серверу .");
@@ -211,13 +195,16 @@ namespace Chat322_Client
                 //string message = Console.ReadLine();
                 //if (message.ToLower() == "exit") break;
 
+            */
+
                 byte[] data = Encoding.UTF8.GetBytes($"{str}");
                 stream.Write(data, 0, data.Length);
 
                 byte[] buffer = new byte[1024];
                 int bytesRead = stream.Read(buffer, 0, buffer.Length);
                 string dr = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                //if (dr == "avt-Проверьте верность введённых данных или зарегистрируйтесь!")
+
+               /* //if (dr == "avt-Проверьте верность введённых данных или зарегистрируйтесь!")
                 //{
                 //    MessageBox.Show(dr, "Ошибка", MessageBoxButtons.OK);
                 //}
@@ -227,9 +214,25 @@ namespace Chat322_Client
                 //}
                 //Console.WriteLine("Ответ сервера: " + Encoding.UTF8.GetString(buffer, 0, bytesRead));
             //}
+            */
             return dr;
         }
 
+        public static bool RegistrationClient(string str)
+        {
+            bool checkReg = false;
+            byte[] data = Encoding.UTF8.GetBytes($"{str}");
+            stream.Write(data, 0, data.Length);
+
+            byte[] buffer = new byte[1024];
+            int bytesRead = stream.Read(buffer, 0, buffer.Length);
+            string dr = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+            if(dr=="okk")
+            {
+                checkReg = true;
+            }
+            return checkReg;
+        }
 
 
 
@@ -252,6 +255,20 @@ namespace Chat322_Client
 // Закрытие соединения
 //stream.Close();
 //myclient.Close();
+
+//================================================================================
+///// <summary>
+///// ОТПРАВКА СООБЩЕНИЯ ДЛЯ АВТОРИЗАЦИИ
+///// </summary>
+///// <param name="ms"></param>
+//public void sendmesavtorization(string ms)
+//{
+//    Task task = new Task(() => {
+//        byte[] data = Encoding.UTF8.GetBytes($"{ms}");
+//        stream.Write(data, 0, data.Length);
+//    });
+//    task.Start();
+//}
 
 
 

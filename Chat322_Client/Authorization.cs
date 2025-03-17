@@ -25,11 +25,7 @@ namespace Chat322_Client
             registration.ShowDialog();
         }
 
-        //public static void newAuthorization()
-        //{
-        //    Authorization authorization = new Authorization();
-        //    authorization.ShowDialog();
-        //}
+       
 
         private void btn_Entrance_Click(object sender, EventArgs e)
         {
@@ -41,6 +37,9 @@ namespace Chat322_Client
             }
             else
             {
+                string[] data = TCPClient.getCldataFromMes(df);
+                TCPClient._idclient = Int32.Parse(data[1]);
+                TCPClient._PersonName = data[2];
                 this.Close();
             }
 

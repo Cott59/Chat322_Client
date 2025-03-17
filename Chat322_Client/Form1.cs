@@ -24,7 +24,7 @@ namespace Chat322_Client
         {
             InitializeComponent();
             start();
-            //SetMessage();
+            SetMessage();
             settingdgv();
             lb_activeGroup.Text = TCPClient._activeGroup;
             
@@ -40,12 +40,12 @@ namespace Chat322_Client
         {
             TCPClient client = new TCPClient();
             client.StartClient();
-            this.Enabled = false;
-            Task task = new Task(() => {
+            
+            //Task task = new Task(() => {
                 Authorization authorization = new Authorization();
                 authorization.ShowDialog();
-            });
-            task.Start();
+            //});
+            //task.Start();
         }
 
         private string getParams(string _path)
@@ -73,18 +73,18 @@ namespace Chat322_Client
                     TCPClient tcp = new TCPClient();
                     string str = tcp.MyReceiveMessages();
                     string[] strs= TCPClient.getCldataFromMes(str);
-                    if (strs[0]== "avt")
-                    {
-                        if (strs[1] == "Проверьте верность введённых данных или зарегистрируйтесь!")
-                        {
-                            MessageBox.Show(strs[1], "Ошибка", MessageBoxButtons.OK);
-                            //TCPClient.AuthorizationClient();
-                        }
-                        else { 
-                            TCPClient._idclient =Int32.Parse(strs[1]);
-                            TCPClient._PersonName = strs[2];
-                        }
-                    }
+                    //if (strs[0]== "avt")
+                    //{
+                    //    if (strs[1] == "Проверьте верность введённых данных или зарегистрируйтесь!")
+                    //    {
+                    //        MessageBox.Show(strs[1], "Ошибка", MessageBoxButtons.OK);
+                           
+                    //    }
+                    //    else { 
+                    //        TCPClient._idclient =Int32.Parse(strs[1]);
+                    //        TCPClient._PersonName = strs[2];
+                    //    }
+                    //}
 
 
                     //string str = tcp.MyReceiveMessagesJson();

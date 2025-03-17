@@ -68,7 +68,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(23, 119);
+            this.label1.Location = new System.Drawing.Point(79, 142);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 17);
             this.label1.TabIndex = 22;
@@ -78,11 +78,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(10, 47);
+            this.label4.Location = new System.Drawing.Point(79, 70);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 17);
+            this.label4.Size = new System.Drawing.Size(39, 17);
             this.label4.TabIndex = 21;
-            this.label4.Text = "Nickname";
+            this.label4.Text = "Имя ";
             // 
             // Registration
             // 
