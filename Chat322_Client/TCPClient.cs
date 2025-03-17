@@ -159,7 +159,7 @@ namespace Chat322_Client
         /// <returns></returns>
         public static string[] getCldataFromMes(string str)
         {
-            string[] splitstr = str.Split(new char[] { '&' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] splitstr = str.Split(new char[] {'-', '&' }, StringSplitOptions.RemoveEmptyEntries);
             return splitstr;
         }
 
