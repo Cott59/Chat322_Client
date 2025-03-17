@@ -16,10 +16,10 @@ namespace Chat322_Client
         public int _IdClient {  get; set; }
 
         public ClientMessage() { }
-        public ClientMessage(string[] message, int id, string name, string font = "Arial")
+        public ClientMessage(string[] message, string id, string name, string font = "Arial")
         {
             _Message = message;
-            _IdClient = id;
+            _IdClient = Int32.Parse(id);
             _Name = name;
             _Font = font;
         }

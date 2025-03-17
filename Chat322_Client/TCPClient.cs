@@ -80,7 +80,7 @@ namespace Chat322_Client
         public void mysendmes(string ms)
         {
             Task task = new Task(() => {
-                byte[] data = Encoding.UTF8.GetBytes($"{ms} /{_activeGroup}-{_idclient}-{_PersonName}");
+                byte[] data = Encoding.UTF8.GetBytes($"{ms}&{_activeGroup}&{_idclient}&{_PersonName}");
                 stream.Write(data, 0, data.Length);
             });
             task.Start();
@@ -101,9 +101,7 @@ namespace Chat322_Client
                 {
                     byte[] buffer = new byte[1024];
                     int bytesRead = stream.Read(buffer, 0, buffer.Length);
-
                     response=Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                    
                     if (response != null) check = false;
                 }
             }
@@ -120,7 +118,6 @@ namespace Chat322_Client
         /// <returns></returns>
         public string MyReceiveMessagesJson() 
         {
-
             StreamReader reader = new StreamReader(stream, Encoding.UTF8);
             string response = "Ничего не пришло";
             bool check = true;
@@ -162,7 +159,7 @@ namespace Chat322_Client
         /// <returns></returns>
         public static string[] getCldataFromMes(string str)
         {
-            string[] splitstr = str.Split(new char[] { '/', '-' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] splitstr = str.Split(new char[] { '&' }, StringSplitOptions.RemoveEmptyEntries);
             return splitstr;
         }
 

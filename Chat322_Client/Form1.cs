@@ -73,27 +73,15 @@ namespace Chat322_Client
                     TCPClient tcp = new TCPClient();
                     string str = tcp.MyReceiveMessages();
                     string[] strs= TCPClient.getCldataFromMes(str);
-                    //if (strs[0]== "avt")
-                    //{
-                    //    if (strs[1] == "Проверьте верность введённых данных или зарегистрируйтесь!")
-                    //    {
-                    //        MessageBox.Show(strs[1], "Ошибка", MessageBoxButtons.OK);
-                           
-                    //    }
-                    //    else { 
-                    //        TCPClient._idclient =Int32.Parse(strs[1]);
-                    //        TCPClient._PersonName = strs[2];
-                    //    }
-                    //}
-
+                    
 
                     //string str = tcp.MyReceiveMessagesJson();
                     //tbox_groupMessages.Text += $"{str}\r\n";
                     //tbox_groupMessages.Text += $"{strs[3]}\r\n";
                     //tbox_groupMessages.Text += $"{strs[0]}\r\n";
                     string[] strmess = getmes(strs[0]);
-                    int id = TCPClient.getClIdFromMes(strs[2]);
-                    ClientMessage clientMessage = new ClientMessage(strmess, id, strs[3]);
+                    //int id = TCPClient.getClIdFromMes(strs[2]);
+                    ClientMessage clientMessage = new ClientMessage(strmess, strs[2], strs[3]);
                     InputMessage(clientMessage);
                 }
             });
@@ -109,7 +97,7 @@ namespace Chat322_Client
         private void btn_GetMessage_Click(object sender, EventArgs e)
         {
             TCPClient tcp = new TCPClient();
-            tcp.mysendmes(tbox_outMessege.Text);
+            tcp.mysendmes($"mes-{tbox_outMessege.Text}");
             tbox_outMessege.Text = string.Empty;
 
             
